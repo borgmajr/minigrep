@@ -32,11 +32,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
+pub fn search(query: &str, contents: &str) -> Vec<std::string::String> {
+    let mut results: Vec<std::string::String> = Vec::new();
+
+    let mut count = 0;
     for line in contents.lines() {
+        count += 1;
         if line.contains(query) {
-            results.push(line);
+            let pre: std::string::String = format!("Ln {}:",count).to_string();
+            results.push(pre + line);
         }
     }
 
