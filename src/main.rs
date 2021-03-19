@@ -8,8 +8,8 @@ use minigrep::Config;
 const USAGE: &str = "minigrep <search string> <path to file>";
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args).unwrap_or_else(|err| {
+
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}. USAGE: {}", err, USAGE);
         process::exit(1);
     });
